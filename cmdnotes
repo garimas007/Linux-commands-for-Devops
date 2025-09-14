@@ -1,0 +1,57 @@
+These are the command used while playing an interesting linux game
+https://overthewire.org/wargames/bandit/
+
+ssh -p (port) user@url
+pwd - ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+--------------
+ls
+pwd
+cat
+------------
+cat ./-    ## file name is - so we use ./
+pwd - 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+---------
+cat ./"--spaces in the filename--"
+pwd - MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+----------
+cd dir
+ls -a
+cat ./<hidden file>
+pwd - 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+------------
+cd dir
+ls
+cat <each file>
+pwd - 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+---------------
+cd dir
+ls
+find -readable -size 1033c
+pwd - HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+----------------
+cd /var
+find -user bandit7 -group bandit6 -size 33c
+cat ./lib/dpkg/info/bandit7.password
+pwd - morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+-----------------
+cat data.txt | grep millionth
+pwd - dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+-------------
+cat data.txt | sort | uniq -c
+pwd - 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+------------
+cat data.txt | grep -a ===
+pwd FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+----------------
+cat data.txt | base64 -d
+pwd dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+-------------
+pwd - 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+---------------
+pwd - FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+----------------------------
+ssh -i sshkey.private bandit.labs.overthewire.org -p 2220 -l bandit14
+pwd - MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+--------------
+nc localhost 30000
+pwd - 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo

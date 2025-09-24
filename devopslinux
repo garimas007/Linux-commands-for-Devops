@@ -1,0 +1,215 @@
+Linux - open source Operating System
+Kernel - core part that talk to hardware
+Shell - program that let you interact with the os via command
+File System - organizes and stores data. even devices are treated as file in linux
+cron job - schedule a task to run automatically
+Log file - at /var/log - useful for trouble shooting
+sudo - temp run cmd as root usr
+ssh - remote login to linux m/c
+
+Linux directory
+-----------------------
+/ Root of the file system
+/home User folders (like C:\Users)
+/bin Essential command binaries (like ls, cp, mv)
+/etc System config files
+/var Variable files (like logs)
+/tmp Temporary files
+/usr User programs and libraries
+/root Home directory of the root (admin) user
+/dev Device files (like USB, hard disks)
+/proc System and process info (virtual folder)
+
+Basic cmd-
+---------------------------
+pwd
+ls
+cd
+mkdir
+touch
+cp
+mv
+rm
+cat
+clear
+exit
+ps
+top - cpu and memory usage
+kill
+htop - better version of top
+
+
+User and Permissions
+---------------------
+root user
+normal user
+
+owner, group, others
+read(4),write(2),execute(1)
+
+apt get install <package-name>
+tar -cvf #create archive
+tar -xvf #extract archive
+gzip
+gunzip
+
+CRUD - create, read, update, delete
+create ------
+    touch <filename.txt>
+    echo "hello" > hello.txt
+    cat > data.txt -- ctrl D to save
+    mkdir <folder-name>
+    mkdir -p devops/scripts/yaml
+read --------------
+    cat <filename.txt>
+    less <filename.txt> -- scrollable
+    more <filename.txt> -- page wise
+    head <filename.txt> -- first 10 lines
+    tail <filename.txt> -- last 10 lines
+    ls , ls -l, ls -a
+    sed -n '3p' <filename.txt>  -- show 3rd line
+    awk 'NR==3' <filename.txt>  -- show 3rd line
+update ----------
+    echo "appending new lines" >> filename.txt
+    nano <filename.txt>
+    vim <filename.txt>
+    vi <filename.txt>
+    sed -i 's/oldtxt/newtxt/g' filename.txt -- replace txt in file
+    mv -- rename and move
+delete --------
+    rm <filename.txt>
+    rm -r foldername
+    rm -rf foldername -- force delete
+
+vi actions-------
+normal mode --
+    Move cursor h (left), l (right), j (down), k (up)
+    Word jump w (next word), b (previous word)
+    Start of line 0
+    End of line $
+    Top of file gg
+    Bottom of file G
+    Delete line dd
+    Copy (yank) line yy
+    Paste p
+    Undo u
+    Redo Ctrl + r
+insert mode -------------
+    i Insert before cursor
+    I Insert at start of line
+    a Insert after cursor
+    A Insert at end of line
+    o Open a new line below
+    O Open a new line above
+exit insert mode ---
+    esc 
+command line mode ----
+    : 
+    :w - save file
+    :q - quit
+    :wq - save and quit
+    :q! - force quit without saving
+    :x - save and exit
+    :set nu - show line number
+    :set nonu - hide line number
+
+Permission -
+u user
+g group
+o others
+
+r read(4)
+w write(2)
+x execute(1)
+
+chmod u+x <file/script-name>   -- add execute to user
+chmod g-w <file/script-name>   -- remove write from group
+chmod o=r <file/script-name>   -- read-only for others
+chmod 777 -- all permission for everyone
+
+chown user:group <file>  -- change ownership
+# create user
+    sudo useradd -m <user-name>
+    sudo passwd <ur-password>
+# delete user
+    sudo deluser <user-name>
+    sudo deluser -r <user-name>
+# modify user
+    sudo usermod -aG <group-name> <user-name>  -- Add to group
+    sudo usermod -l <new-name> <old-name>
+    sudo usermod -d /new/home/path <user-name> -- change home dir
+# create group
+    sudo groupadd <group-name>
+# delete group
+    sudo groupdel <group-name>
+# list all user
+    ps -ef
+    top
+    htop
+# process hierarchy
+    pstree
+# runnig script
+    ./<script-name>
+    ./<script-name> & -- run in background
+    nohup ./<script-name> & -- running after logout
+# systemctl
+    systemctl start <service> Start service now
+    systemctl stop <service> Stop it
+    systemctl restart <service> Restart it
+    systemctl status <service> Show status
+    systemctl enable <service> Start on boot
+    systemctl disable <service> Don’t start on boot
+    journalctl -u <service> View logs
+    systemctl daemon-reexec Reload systemd itself
+
+
+# networking
+    ip addr show    -- check ip address (modern)
+    ifconfig
+    hostname -l     -- show ip only
+    ip route show   -- viw routing table
+    route -n        
+    cat /etc/resolv.conf    -- check dns info
+    hostname    -- show hostname
+    hostnamectl set-hostname newname    -- change hostname
+
+# connectivity and troubleshooting
+    ping <host> -- Check if host is reachable
+    traceroute <host> -- Show path to host
+    nslookup <host> -- DNS resolution
+    dig <host> -- Advanced DNS info
+    telnet <host> <port> -- Test port connectivity
+    nmap <host> -- Scan open ports
+    netstat -tulnp -- Show listening ports (TCP/UDP)
+    ss -tuln -- Modern version of netstat
+    curl, wget -- Test HTTP/HTTPS connections
+    tcpdump -- Packet capture tool
+    ip a, ip r, ip link Interface and routing config
+
+# host to host communication
+    ssh user@host
+    scp <file> user@host:/path  -- share file
+    rsync -av <source url> user@host:/<target url> -- sync folders
+    ssh -L 8080:localhost:80 user@remote -- aetup port forwarding
+
+# disk usage
+    df -h
+    du -sh*
+    lsblk -- ;ist block devices
+
+# system health chaeck
+    top
+    htop
+    uptime  -- check load average
+    free -h  -- check memory usage
+    vmstat1  -- system performance in real time
+
+# check disk error
+    dmesg | grep -i error
+    sudo smartctl -a /dev/sda
+
+# debugging
+    bash -x script.sh       Debug bash scripts line by line
+    python3 -m pdb script.py    Python debugger
+    npm run dev or node app.js  Watch console logs for Node.js
+    curl -v         Verbose API call debugging
